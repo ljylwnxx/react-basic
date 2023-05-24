@@ -1,28 +1,12 @@
-// 定义函数
-const getancientPoetry = (dynasty) =>{
-  if(dynasty === '唐') {
-     return <span>《将进酒》- 李白</span>
-  }
-  if(dynasty === '宋') {
-    return <span>《赤壁赋》- 苏轼</span>
-  }
-  if(dynasty === '东晋') {
-    return <span>《岳阳楼记》- 陶渊明</span>
-  }
-}
+import './app.css'
+const showText = true
+
 function App() {
-  return (
-    <div className="App">
-      <div>
-        {getancientPoetry('唐')}
-      </div>
-      <div>
-        {getancientPoetry('宋')}
-      </div>
-      <div>
-        {getancientPoetry('东晋')}
-      </div> 
-    </div>
-  )
+return (
+  <div className="App">
+    <div className={ showText ? 'header': ''}>大家好，我是wnxx,现在做jsx类名动态类名控制</div>
+  </div>
+)
 }
+
 export default App
