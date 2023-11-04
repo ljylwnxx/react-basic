@@ -1,8 +1,7 @@
-
 import React from 'react'
 
 // 函数组件的创建
-function Introduction () {
+function Introduction() {
   // 函数组件回调函数
   const functionHandleClick = () => {
     console.log('函数组件被点击了')
@@ -23,7 +22,7 @@ class IntroductionComponet extends React.Component {
   componentHandleClick = () => {
     console.log('类组件被点击了')
   }
-  render () {
+  render() {
     return (
       <div>
         <h1>大家好，我叫wnxx</h1>
@@ -34,7 +33,7 @@ class IntroductionComponet extends React.Component {
   }
 }
 
-function App () {
+function App() {
   return (
     <div className="App">
       {/*函数组件的渲染*/}
