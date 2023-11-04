@@ -1,14 +1,16 @@
-// 组件的定义
-function Introduction () {
-  return (
-    <div>
+import React from "react"
+
+// 类组件的创建
+class Introduction extends React.Component {
+  render () {
+    return <div>
       <h1>大家好，我叫wnxx</h1>
       <h1>我今年3岁了</h1>
-      <h1>我是一只可爱的动物</h1>
+      <h1>类组件的创建和渲染</h1>
     </div>
-  )
+  }
 }
-// 组件的渲染
+// 类组件的渲染
 function App () {
   return (
     <div className="App">
