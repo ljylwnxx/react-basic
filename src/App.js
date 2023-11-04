@@ -22,7 +22,7 @@ function Introduction () {
 }
 
 // 类组件的创建
-class IntroductionComponet extends React.Component {
+class IntroductionComponent extends React.Component {
   // 回调函数
   componentHandleClick = (e, msg) => {
     console.log('类组件被点击了', e, msg)
@@ -44,7 +44,7 @@ function App () {
       {/*函数组件的渲染*/}
       <Introduction />
       {/*类组件的渲染*/}
-      <IntroductionComponet />
+      <IntroductionComponent />
     </div>
   )
 }
