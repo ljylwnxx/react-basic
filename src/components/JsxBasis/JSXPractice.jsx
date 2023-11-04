@@ -79,7 +79,7 @@ function App() {
         {commentList.map((item) => (
           <div className="list" key={item.listId}>
             <div className="avatar-frame">
-              <img src={avatar} className="avatar" />
+              <img src={avatar} className="avatar" alt="" />
             </div>
             <div className="main">
               <div className="name">{item.name}</div>
