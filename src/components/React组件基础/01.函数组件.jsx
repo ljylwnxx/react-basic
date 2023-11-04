@@ -1,5 +1,5 @@
 // 组件的定义
-function Introduction () {
+function Introduction() {
   return (
     <div>
       <h1>大家好，我叫wnxx</h1>
@@ -9,7 +9,7 @@ function Introduction () {
   )
 }
 // 组件的渲染
-function App () {
+function App() {
   return (
     <div className="App">
       <Introduction />
@@ -18,5 +18,3 @@ function App () {
 }
 
 export default App
-
-
