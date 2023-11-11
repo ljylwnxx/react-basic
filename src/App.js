@@ -1,67 +1,40 @@
-import React from 'react'
+import React, { createRef } from 'react'
 
 // 类组件的创建
 class IntroductionComponent extends React.Component {
-  // 定义组件状态
-  state = {
-    weight: 30,
-    hobbies: ['旅游', '唱歌'],
-    animals: {
-      name: 'wnxx',
-      age: 3
-    }
-  }
+  nameRef = createRef()
+  ageRef = createRef()
+  weightRef = createRef()
+  hobbiesRef = createRef()
+
   // 事件回调函数
-  changeNameInput = (e) => {
-    this.setState({
-      animals: {
-        ...this.state.animals,
-        name: e.target.value
-      }
-    })
+  getInputValue = () => {
+    console.log('姓名：', this.nameRef.current.value)
+    console.log('年龄: ', this.ageRef.current.value)
+    console.log('体重: ', this.weightRef.current.value)
+    console.log('爱好: ', this.hobbiesRef.current.value)
   }
 
-  changeAgeInput = (e) => {
-    this.setState({
-      animals: {
-        ...this.state.animals,
-        age: e.target.value
-      }
-    })
-  }
-
-  changeWeightInput = (e) => {
-    this.setState({
-      weight: e.target.value
-    })
-  }
-
-  changeHobbiesInput = (e) => {
-    this.setState({
-      hobbies: e.target.value
-    })
-  }
   render () {
     // 使用状态
     return (
       <div>
-        <div className="name">大家好，我叫
-          <input type="text" value={this.state.animals.name} onChange={this.changeNameInput} />
+        <div>你好，请如实填写以下信息：</div>
+        <div className="name">姓名：
+          <input type="text" ref={this.nameRef} />
         </div>
-        <div className="age">我今年
-          <input type="text" value={this.state.animals.age} onChange={this.changeAgeInput} />
-          岁了
+        <div className="age">年龄：
+          <input type="text" ref={this.ageRef} />
         </div>
-        <div className="weight">
-          <div>我的体重为：
-            <input type="text" value={this.state.weight} onChange={this.changeWeightInput} />
-          </div>
+        <div className="weight">体重：
+          <input type="text" ref={this.weightRef} />
         </div>
-        <div className="hobbies">
-          <div>我的爱好包括：
-            <input type="text" value={this.state.hobbies} onChange={this.changeHobbiesInput} />
-          </div>
+        <div className="hobbies">爱好：
+          <input type="text" ref={this.hobbiesRef} />
         </div>
+        <button onClick={this.getInputValue}>
+          点击按钮获取输入框的值
+        </button>
       </div>
     )
   }
