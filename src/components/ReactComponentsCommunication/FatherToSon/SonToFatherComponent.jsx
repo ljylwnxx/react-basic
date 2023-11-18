@@ -1,9 +1,9 @@
 import React from 'react'
 
 // 函数式子组件
-function SonFunctionComponent (props) {
+function SonFunctionComponent(props) {
   const { name, getMsg } = props
-  function handleClick () {
+  function handleClick() {
     // 调用父组件传递过来的回调函数 并注入参数
     getMsg('pupu')
   }
@@ -20,16 +20,16 @@ function SonFunctionComponent (props) {
 class App extends React.Component {
   // 准备数据
   state = {
-    name: 'wnxx'
+    name: 'wnxx',
   }
   // 提供回调函数
   changeMessage = (newName) => {
     this.setState({
-      name: newName
+      name: newName,
     })
     console.log('来自子组件的数据', newName)
   }
-  render () {
+  render() {
     return (
       <>
         <h1>我是父组件</h1>
