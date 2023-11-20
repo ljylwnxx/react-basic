@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 子组件A
-function SonA ({ msg }) {
+function SonA({ msg }) {
   return (
     <div>
       SonA
@@ -10,8 +10,8 @@ function SonA ({ msg }) {
   )
 }
 // 子组件B
-function SonB ({ changeMsg }) {
-  function handleClick () {
+function SonB({ changeMsg }) {
+  function handleClick() {
     changeMsg('我叫pupu')
   }
   return (
@@ -26,16 +26,16 @@ function SonB ({ changeMsg }) {
 class App extends React.Component {
   // 父组件提供状态数据
   state = {
-    message: '我叫wnxx'
+    message: '我叫wnxx',
   }
   // 父组件提供修改数据的方法
   changeMsg = (newMsg) => {
     this.setState({
-      message: newMsg
+      message: newMsg,
     })
   }
 
-  render () {
+  render() {
     return (
       <>
         {/* 接收数据的组件 */}
