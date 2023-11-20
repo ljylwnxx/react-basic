@@ -1,9 +1,8 @@
-import React from "react"
+import React from 'react'
 
 // 渲染列表
-function AncientPoetryList ({ list, delAncientPoetry }) {
-
-  function handleClick () {
+function AncientPoetryList({ list, delAncientPoetry }) {
+  function handleClick() {
     delAncientPoetry(list.id)
   }
   return (
@@ -24,28 +23,26 @@ class App extends React.Component {
     ancientPoetry: [
       { id: 1, name: '《岳阳楼记》', author: '陶渊明', dynasty: '东晋' },
       { id: 2, name: '《赤壁赋》', author: '苏轼', dynasty: '宋' },
-      { id: 3, name: '《将进酒》', author: '李白', dynasty: '唐' }
-    ]
+      { id: 3, name: '《将进酒》', author: '李白', dynasty: '唐' },
+    ],
   }
   // 提供回调函数
   delAncientPoetry = (id) => {
     this.setState({
-      ancientPoetry: this.state.ancientPoetry.filter(item => item.id !== id)
+      ancientPoetry: this.state.ancientPoetry.filter((item) => item.id !== id),
     })
   }
 
-
-  render () {
+  render() {
     return (
       <div>
-        {
-          this.state.ancientPoetry.map(item =>
-            <AncientPoetryList
-              key={item.id}
-              list={item}
-              delAncientPoetry={this.delAncientPoetry} />
-          )
-        }
+        {this.state.ancientPoetry.map((item) => (
+          <AncientPoetryList
+            key={item.id}
+            list={item}
+            delAncientPoetry={this.delAncientPoetry}
+          />
+        ))}
       </div>
     )
   }
