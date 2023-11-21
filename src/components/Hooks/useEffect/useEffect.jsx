@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
-import { Button } from "antd"
+import { useState, useEffect } from 'react'
+import { Button } from 'antd'
 
-
-function App () {
+function App() {
   const [name, setName] = useState('pupu')
   const [age, setAge] = useState(10)
 
