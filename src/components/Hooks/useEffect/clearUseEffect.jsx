@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
-import { Button } from "antd"
+import { useState, useEffect } from 'react'
+import { Button } from 'antd'
 
-
-function Test () {
+function Test() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -16,14 +15,10 @@ function Test () {
     }
   }, [count])
 
-  return (
-    <div>
-      {count}
-    </div>
-  )
+  return <div>{count}</div>
 }
 
-function App () {
+function App() {
   const [flag, setFlag] = useState(true)
   return (
     <div>
