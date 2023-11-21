@@ -1,37 +1,34 @@
-import { useState } from "react"
-import { Button } from "antd"
+import { useState } from 'react'
+import { Button } from 'antd'
 
 const hobbies = [
   { id: 0, activity: '旅游' },
-  { id: 1, activity: '唱歌' }
+  { id: 1, activity: '唱歌' },
 ]
-function App () {
+function App() {
   const [name, setName] = useState('pupu')
   const [age, setAge] = useState(10)
   const [hobby, setHobby] = useState(hobbies)
   const [address, setAddress] = useState({
     location: {
       provice: '云南省',
-      city: '丽江市'
-    }
+      city: '丽江市',
+    },
   })
 
-  function handleAddressChange (address) {
+  function handleAddressChange(address) {
     setAddress({
       ...address,
       location: {
         ...address.location,
         provice: '浙江省',
-        city: '杭州市'
-      }
+        city: '杭州市',
+      },
     })
   }
 
-  function handleHobbyChange () {
-    setHobby([
-      ...hobby,
-      { id: 2, activity: '绘画' }
-    ])
+  function handleHobbyChange() {
+    setHobby([...hobby, { id: 2, activity: '绘画' }])
   }
   return (
     <div>
@@ -56,9 +53,7 @@ function App () {
         </Button>
       </div>
       <div className="hobby">
-        <div>
-          爱好：{hobby.map(item => item.activity).join('、')}
-        </div>
+        <div>爱好：{hobby.map((item) => item.activity).join('、')}</div>
         <Button type="primary" onClick={handleHobbyChange}>
           修改爱好按钮
         </Button>
