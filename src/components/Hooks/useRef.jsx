@@ -1,21 +1,18 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from 'react'
 
 class UseRefComponent extends React.Component {
-  render () {
-    return (
-      <div>这是useRefComponent类组件</div>
-    )
+  render() {
+    return <div>这是useRefComponent类组件</div>
   }
 }
 
-function App () {
+function App() {
   const componentRef = useRef(null)
   const nameRef = useRef(null)
   // useEffect是在dom渲染之后
   useEffect(() => {
     console.log(componentRef.current)
     console.log(nameRef.current)
-
   }, [])
 
   return (
