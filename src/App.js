@@ -1,10 +1,14 @@
-import { useWindowScroll } from "./components/Hooks/useWindowScroll"
+import { useLocalStorage } from "./components/Hooks/useLocalStorage"
+import { Button } from "antd"
+
 
 function App () {
-  const [y] = useWindowScroll()
+  const [message, setMessage] = useLocalStorage('useLocalStorage-key', 'wnxx')
+
   return (
-    <div style={{ height: '960px' }}>
-      {y}
+    <div>
+      {message}
+      <Button type="primary" onClick={() => setMessage('pupu')}>更改按钮</Button>
     </div>
   )
 }
