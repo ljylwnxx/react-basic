@@ -1,6 +1,6 @@
-import Home from './components/Router/Home'
-import About from './components/Router/About'
-import Login from './components/Router/Login'
+import Home from './components/Router/RouterBasic/Home'
+import About from './components/Router/RouterBasic/About'
+import Login from './components/Router/RouterBasic/Login'
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 
 // 进行路由配置
