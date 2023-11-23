@@ -1,7 +1,7 @@
 function Home () {
   return (
     <div>
-      这是首页
+      这是首页页面
     </div>
   )
 }
