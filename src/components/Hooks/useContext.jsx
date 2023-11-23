@@ -1,7 +1,7 @@
-import React, { createContext, useState, useContext } from "react"
+import React, { createContext, useState, useContext } from 'react'
 
 const Context = createContext()
-function ComponentA () {
+function ComponentA() {
   const name = useContext(Context)
   return (
     <div>
@@ -12,7 +12,7 @@ function ComponentA () {
   )
 }
 
-function ComponentB () {
+function ComponentB() {
   const name = useContext(Context)
   return (
     <div>
@@ -22,7 +22,7 @@ function ComponentB () {
   )
 }
 
-function App () {
+function App() {
   const [name, setName] = useState('我叫wnxx')
   return (
     <Context.Provider value={name}>
