@@ -1,27 +1,122 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useState } from 'react'
+import { Avatar } from 'antd'
+import './app.css'
+import avatar from './assets/banner.jpg'
 
-import Layout from "./components/Router/NestedRoute/Layout"
-import Login from "./components/Router/NestedRoute/Login"
-import Board from "./components/Router/NestedRoute/Board"
-import Article from "./components/Router/NestedRoute/Article"
-import NotFound from "./components/Router/NestedRoute/NotFound"
+const showText = true
+const topTipNumber = ''
+const tabMenu = [
+  {
+    tabId: 1,
+    text: '按热度排序',
+    type: 'hot',
+  },
+  {
+    tabId: 2,
+    text: '按时间排序',
+    type: 'time',
+  },
+]
+const active = 'hot'
+const list = [
+  {
+    listId: 1,
+    avatar: avatar,
+    name: '第一位',
+    content: '感觉讲的很不错',
+    time: new Date('2022-01-11 09:09:00'),
+    count: 120,
+    attitude: 0,
+  },
+  {
+    listId: 2,
+    avatar: avatar,
+    name: '第二位',
+    content: '有错别字',
+    time: new Date('2022-03-14 19:09:00'),
+    count: 20,
+    attitude: 0,
+  },
+  {
+    listId: 3,
+    avatar: avatar,
+    name: '第三位',
+    content: '这个原理好复杂',
+    time: new Date('2022-02-21 22:09:00'),
+    count: 96,
+    attitude: 0,
+  },
+  {
+    listId: 4,
+    avatar: avatar,
+    name: '第四位',
+    content: '讲解很细致，听的很明白',
+    time: new Date('2022-05-17 19:19:00'),
+    count: 320,
+    attitude: 1,
+  },
+  {
+    listId: 5,
+    avatar: avatar,
+    name: '第五位',
+    content: '听完这个，感觉完全明白了',
+    time: new Date('2022-08-12 12:09:09'),
+    count: 870,
+    attitude: 1,
+  },
+]
+
+function formatTime (time) {
+  return `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
+}
 
 function App () {
+  const [commentList, setCommentList] = useState(list)
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          {/* 定义二级路由嵌套 */}
-          {/* <Route path="board" element={<Board />}></Route> */}
-          {/* 默认二级路由，添加index属性 把path干掉 */}
-          <Route index element={<Board />}></Route>
-          <Route path="article" element={<Article />}></Route>
-        </Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='*' element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <div className="header">
+        <div className="comment-number">{showText ? commentList.length + topTipNumber : '暂无'}评论</div>
+        <div className="tab">
+          {tabMenu.map((item) => (
+            <span className={item.type === active ? 'on' : ''} key={item.tabId}>
+              {item.text}
+            </span>
+          ))}
+        </div>
+      </div>
+      {/* 评论列表 */}
+      <div className='reply-list'>
+        {/* 评论项 */}
+        {commentList.map(item => (
+          <div key={item.listId} className='reply-item'>
+            {/* 头像 */}
+            <div className="avatar">
+              <Avatar size="large" src={item.avatar} />
+            </div>
+            <div className="content-wrap">
+              {/* 用户名 */}
+              <div className="user-info">
+                <div className="user-name">{item.name}</div>
+              </div>
+              {/* 评论内容 */}
+              <div className="root-reply">
+                <span className="reply-content">{item.content}</span>
+                <div className="reply-info">
+                  {/* 评论时间 */}
+                  <span className="reply-time">{formatTime(item.time)}</span>
+                  {/* 评论数量 */}
+                  <span className="reply-count">点赞数：{item.count}</span>
+                  {/* 删除按钮 */}
+                  <span className="delete-btn">删除</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
+
 
 export default App
