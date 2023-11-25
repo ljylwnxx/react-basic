@@ -111,7 +111,9 @@ function App () {
     }
   }
   const [content, setContent] = useState('')
+  // 获取dom
   const inputRef = useRef(null)
+  // 发布
   const handlePublish = () => {
     setCommentList([
       ...commentList,
@@ -135,6 +137,7 @@ function App () {
   return (
     <div className="App">
       <div className="header">
+        {/* Tab控制 */}
         <div className="comment-number">评论{showText ? commentList.length + topTipNumber : '暂无'}</div>
         <div className="tab">
           {tabMenu.map((item) => (
