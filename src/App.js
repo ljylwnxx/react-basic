@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Avatar, Button } from 'antd'
+import { Avatar, Button, Input } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
 import _ from 'lodash'
@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import { v4 as uuidV4 } from 'uuid'
 import dayjs from 'dayjs'
 
+const { TextArea } = Input
 const showText = true
 const topTipNumber = ''
 const tabMenu = [
@@ -147,7 +148,9 @@ function App () {
         </div>
         <div className="reply-wrap">
           {/* 评论框 */}
-          <textarea
+          <TextArea
+            showCount
+            maxLength={100}
             placeholder='发一条评论'
             ref={inputRef}
             value={content}
