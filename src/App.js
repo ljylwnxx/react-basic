@@ -9,20 +9,23 @@ const tabMenu = [
   {
     tabId: 1,
     text: '按热度排序',
-    type: 'hot',
+    type: 'hot'
   },
   {
     tabId: 2,
     text: '按时间排序',
-    type: 'time',
-  },
+    type: 'time'
+  }
 ]
-const active = 'hot'
+
 const list = [
   {
     listId: 1,
-    avatar: avatar,
-    name: '第一位',
+    user: {
+      uid: '110210',
+      avatar: avatar,
+      uname: 'Wnxx'
+    },
     content: '感觉讲的很不错',
     time: new Date('2022-01-11 09:09:00'),
     count: 120,
@@ -30,8 +33,11 @@ const list = [
   },
   {
     listId: 2,
-    avatar: avatar,
-    name: '第二位',
+    user: {
+      uid: '110211',
+      avatar: avatar,
+      uname: 'Pupu'
+    },
     content: '有错别字',
     time: new Date('2022-03-14 19:09:00'),
     count: 20,
@@ -39,8 +45,11 @@ const list = [
   },
   {
     listId: 3,
-    avatar: avatar,
-    name: '第三位',
+    user: {
+      uid: '110212',
+      avatar: avatar,
+      uname: 'Tom'
+    },
     content: '这个原理好复杂',
     time: new Date('2022-02-21 22:09:00'),
     count: 96,
@@ -48,8 +57,11 @@ const list = [
   },
   {
     listId: 4,
-    avatar: avatar,
-    name: '第四位',
+    user: {
+      uid: '110213',
+      avatar: avatar,
+      uname: 'John'
+    },
     content: '讲解很细致，听的很明白',
     time: new Date('2022-05-17 19:19:00'),
     count: 320,
@@ -57,14 +69,22 @@ const list = [
   },
   {
     listId: 5,
-    avatar: avatar,
-    name: '第五位',
+    user: {
+      uid: '110214',
+      avatar: avatar,
+      uname: 'Lily'
+    },
     content: '听完这个，感觉完全明白了',
     time: new Date('2022-08-12 12:09:09'),
     count: 870,
     attitude: 1,
   },
 ]
+const user = {
+  uid: '110210',
+  avatar: avatar,
+  uname: 'wnxx'
+}
 
 function formatTime (time) {
   return `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
@@ -72,13 +92,25 @@ function formatTime (time) {
 
 function App () {
   const [commentList, setCommentList] = useState(list)
+  const handleDel = (id) => {
+    setCommentList(commentList.filter((item) => item.listId !== id))
+  }
+  // tab切换功能
+  const [type, setType] = useState('hot')
+  const handleTabChange = (type) => {
+    setType(type)
+  }
+
   return (
     <div className="App">
       <div className="header">
         <div className="comment-number">{showText ? commentList.length + topTipNumber : '暂无'}评论</div>
         <div className="tab">
           {tabMenu.map((item) => (
-            <span className={item.type === active ? 'on' : ''} key={item.tabId}>
+            <span
+              className={`nav-item ${type === item.type && 'active'}`}
+              onClick={() => handleTabChange(item.type)}
+              key={item.tabId}>
               {item.text}
             </span>
           ))}
@@ -91,12 +123,12 @@ function App () {
           <div key={item.listId} className='reply-item'>
             {/* 头像 */}
             <div className="avatar">
-              <Avatar size="large" src={item.avatar} />
+              <Avatar size="large" src={item.user.avatar} />
             </div>
             <div className="content-wrap">
               {/* 用户名 */}
               <div className="user-info">
-                <div className="user-name">{item.name}</div>
+                <div className="user-name">{item.user.uname}</div>
               </div>
               {/* 评论内容 */}
               <div className="root-reply">
@@ -107,7 +139,7 @@ function App () {
                   {/* 评论数量 */}
                   <span className="reply-count">点赞数：{item.count}</span>
                   {/* 删除按钮 */}
-                  <span className="delete-btn">删除</span>
+                  {user.uid === item.user.uid && <span className="delete-btn" onClick={() => handleDel(item.listId)}>删除</span>}
                 </div>
               </div>
             </div>
