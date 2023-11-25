@@ -135,7 +135,7 @@ function App () {
   return (
     <div className="App">
       <div className="header">
-        <div className="comment-number">{showText ? commentList.length + topTipNumber : '暂无'}评论</div>
+        <div className="comment-number">评论{showText ? commentList.length + topTipNumber : '暂无'}</div>
         <div className="tab">
           {tabMenu.map((item) => (
             <span
