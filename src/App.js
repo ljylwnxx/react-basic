@@ -4,6 +4,8 @@ import './app.css'
 import avatar from './assets/banner.jpg'
 import _ from 'lodash'
 import classNames from 'classnames'
+import { v4 as uuidV4 } from 'uuid'
+import dayjs from 'dayjs'
 
 const showText = true
 const topTipNumber = ''
@@ -29,7 +31,7 @@ const list = [
       uname: 'Wnxx'
     },
     content: '感觉讲的很不错',
-    time: new Date('2022-01-11 09:09:00'),
+    time: dayjs(new Date('2022-01-11 09:09:00')).format('YYYY-MM-DD HH:mm:ss'),
     like: 120,
     attitude: 0,
   },
@@ -41,7 +43,7 @@ const list = [
       uname: 'Pupu'
     },
     content: '有错别字',
-    time: new Date('2022-03-14 19:09:00'),
+    time: dayjs(new Date('2022-03-14 19:09:00')).format('YYYY-MM-DD HH:mm:ss'),
     like: 20,
     attitude: 0,
   },
@@ -53,7 +55,7 @@ const list = [
       uname: 'Tom'
     },
     content: '这个原理好复杂',
-    time: new Date('2022-02-21 22:09:00'),
+    time: dayjs(new Date('2022-02-21 22:09:00')).format('YYYY-MM-DD HH:mm:ss'),
     like: 96,
     attitude: 0,
   },
@@ -65,7 +67,7 @@ const list = [
       uname: 'John'
     },
     content: '讲解很细致，听的很明白',
-    time: new Date('2022-05-17 19:19:00'),
+    time: dayjs(new Date('2022-05-17 19:19:00')).format('YYYY-MM-DD HH:mm:ss'),
     like: 320,
     attitude: 1,
   },
@@ -77,7 +79,7 @@ const list = [
       uname: 'Lily'
     },
     content: '听完这个，感觉完全明白了',
-    time: new Date('2022-08-12 12:09:09'),
+    time: dayjs(new Date('2022-08-12 12:09:09')).format('YYYY-MM-DD HH:mm:ss'),
     like: 870,
     attitude: 1,
   },
@@ -114,12 +116,12 @@ function App () {
       {
         listId: 6,
         user: {
-          uid: '110215',
+          uid: uuidV4(),
           avatar: avatar,
           uname: 'Judy'
         },
         content: content,
-        time: new Date('2022-12-12 12:12:12'),
+        time: dayjs(new Date('2022-12-12 12:12:12')).format('YYYY-MM-DD HH:mm:ss'),
         like: 370
       }
     ])
@@ -166,7 +168,7 @@ function App () {
                 <span className="reply-content">{item.content}</span>
                 <div className="reply-info">
                   {/* 评论时间 */}
-                  <span className="reply-time">{formatTime(item.time)}</span>
+                  <span className="reply-time">{item.time}</span>
                   {/* 评论数量 */}
                   <span className="reply-count">点赞数：{item.like}</span>
                   {/* 删除按钮 */}
