@@ -6,7 +6,6 @@
 }
 .header {
   width: 60%;
-  display: flex;
 }
 .reply-list {
   width: 60%;
@@ -62,4 +61,7 @@
 .active {
   color: #000;
   margin: 0 10px;
+}
+.reply-wrap {
+  display: flex;
 }

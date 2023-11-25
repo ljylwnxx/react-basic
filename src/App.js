@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Avatar } from 'antd'
+import { useRef, useState } from 'react'
+import { Avatar, Button } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
 import _ from 'lodash'
@@ -107,19 +107,29 @@ function App () {
       setCommentList(_.orderBy(commentList, 'time', 'desc'))
     }
   }
-
+  const [content, setContent] = useState('')
+  const handlePublish = () => {
+    setCommentList([
+      ...commentList,
+      {
+        listId: 6,
+        user: {
+          uid: '110215',
+          avatar: avatar,
+          uname: 'Judy'
+        },
+        content: content,
+        time: new Date('2022-12-12 12:12:12'),
+        like: 370
+      }
+    ])
+  }
   return (
     <div className="App">
       <div className="header">
         <div className="comment-number">{showText ? commentList.length + topTipNumber : '暂无'}评论</div>
         <div className="tab">
           {tabMenu.map((item) => (
-            // <span
-            //   className={`nav-item ${type === item.type && 'active'}`}
-            //   onClick={() => handleTabChange(item.type)}
-            //   key={item.tabId}>
-            //   {item.text}
-            // </span>
             <span
               className={classNames('nav-item', { active: item === type.item })}
               onClick={() => handleTabChange(item.type)}
@@ -127,6 +137,14 @@ function App () {
               {item.text}
             </span>
           ))}
+        </div>
+        <div className="reply-wrap">
+          {/* 评论框 */}
+          <textarea placeholder='发一条评论' value={content} onChange={(e) => setContent(e.target.value)} />
+          {/* 发布按钮 */}
+          <div className="reply-send">
+            <Button type='primary' className="send-text" onClick={handlePublish}>发布</Button>
+          </div>
         </div>
       </div>
       {/* 评论列表 */}
