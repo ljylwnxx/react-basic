@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Avatar, Button } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
@@ -110,6 +110,7 @@ function App () {
     }
   }
   const [content, setContent] = useState('')
+  const inputRef = useRef(null)
   const handlePublish = () => {
     setCommentList([
       ...commentList,
@@ -125,6 +126,10 @@ function App () {
         like: 370
       }
     ])
+    // 清空输入框内容
+    setContent('')
+    // 重新聚焦
+    inputRef.current.focus()
   }
   return (
     <div className="App">
@@ -142,7 +147,12 @@ function App () {
         </div>
         <div className="reply-wrap">
           {/* 评论框 */}
-          <textarea placeholder='发一条评论' value={content} onChange={(e) => setContent(e.target.value)} />
+          <textarea
+            placeholder='发一条评论'
+            ref={inputRef}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
           {/* 发布按钮 */}
           <div className="reply-send">
             <Button type='primary' className="send-text" onClick={handlePublish}>发布</Button>
