@@ -139,7 +139,7 @@ function App () {
         <div className="tab">
           {tabMenu.map((item) => (
             <span
-              className={classNames('nav-item', { active: item === type.item })}
+              className={classNames('nav-item', { active: type === item.type })}
               onClick={() => handleTabChange(item.type)}
               key={item.tabId}>
               {item.text}
