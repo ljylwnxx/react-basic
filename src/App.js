@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Avatar, Button } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
