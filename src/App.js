@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Avatar } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
+import _ from 'lodash'
 
 const showText = true
 const topTipNumber = ''
@@ -28,7 +29,7 @@ const list = [
     },
     content: '感觉讲的很不错',
     time: new Date('2022-01-11 09:09:00'),
-    count: 120,
+    like: 120,
     attitude: 0,
   },
   {
@@ -40,7 +41,7 @@ const list = [
     },
     content: '有错别字',
     time: new Date('2022-03-14 19:09:00'),
-    count: 20,
+    like: 20,
     attitude: 0,
   },
   {
@@ -52,7 +53,7 @@ const list = [
     },
     content: '这个原理好复杂',
     time: new Date('2022-02-21 22:09:00'),
-    count: 96,
+    like: 96,
     attitude: 0,
   },
   {
@@ -64,7 +65,7 @@ const list = [
     },
     content: '讲解很细致，听的很明白',
     time: new Date('2022-05-17 19:19:00'),
-    count: 320,
+    like: 320,
     attitude: 1,
   },
   {
@@ -76,7 +77,7 @@ const list = [
     },
     content: '听完这个，感觉完全明白了',
     time: new Date('2022-08-12 12:09:09'),
-    count: 870,
+    like: 870,
     attitude: 1,
   },
 ]
@@ -91,7 +92,7 @@ function formatTime (time) {
 }
 
 function App () {
-  const [commentList, setCommentList] = useState(list)
+  const [commentList, setCommentList] = useState(_.orderBy(list, 'like', 'desc'))
   const handleDel = (id) => {
     setCommentList(commentList.filter((item) => item.listId !== id))
   }
@@ -99,6 +100,11 @@ function App () {
   const [type, setType] = useState('hot')
   const handleTabChange = (type) => {
     setType(type)
+    if (type === 'hot') {
+      setCommentList(_.orderBy(commentList, 'like', 'desc'))
+    } else {
+      setCommentList(_.orderBy(commentList, 'time', 'desc'))
+    }
   }
 
   return (
@@ -137,7 +143,7 @@ function App () {
                   {/* 评论时间 */}
                   <span className="reply-time">{formatTime(item.time)}</span>
                   {/* 评论数量 */}
-                  <span className="reply-count">点赞数：{item.count}</span>
+                  <span className="reply-count">点赞数：{item.like}</span>
                   {/* 删除按钮 */}
                   {user.uid === item.user.uid && <span className="delete-btn" onClick={() => handleDel(item.listId)}>删除</span>}
                 </div>
