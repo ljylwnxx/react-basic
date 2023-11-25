@@ -3,6 +3,7 @@ import { Avatar } from 'antd'
 import './app.css'
 import avatar from './assets/banner.jpg'
 import _ from 'lodash'
+import classNames from 'classnames'
 
 const showText = true
 const topTipNumber = ''
@@ -113,8 +114,14 @@ function App () {
         <div className="comment-number">{showText ? commentList.length + topTipNumber : '暂无'}评论</div>
         <div className="tab">
           {tabMenu.map((item) => (
+            // <span
+            //   className={`nav-item ${type === item.type && 'active'}`}
+            //   onClick={() => handleTabChange(item.type)}
+            //   key={item.tabId}>
+            //   {item.text}
+            // </span>
             <span
-              className={`nav-item ${type === item.type && 'active'}`}
+              className={classNames('nav-item', { active: item === type.item })}
               onClick={() => handleTabChange(item.type)}
               key={item.tabId}>
               {item.text}
