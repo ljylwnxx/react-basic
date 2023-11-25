@@ -22,7 +22,7 @@ const tabMenu = [
 
 const list = [
   {
-    listId: 1,
+    listId: 1,//随机id
     user: {
       uid: '110210',
       avatar: avatar,
