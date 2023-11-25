@@ -146,20 +146,21 @@ function App () {
             </span>
           ))}
         </div>
-        <div className="reply-wrap">
-          {/* 评论框 */}
-          <TextArea
-            showCount
-            maxLength={100}
-            placeholder='发一条评论'
-            ref={inputRef}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          {/* 发布按钮 */}
-          <div className="reply-send">
-            <Button type='primary' className="send-text" onClick={handlePublish}>发布</Button>
-          </div>
+      </div>
+      {/* 评论框 */}
+      <div className="reply-wrap">
+        {/* 评论框 */}
+        <TextArea
+          showCount
+          maxLength={100}
+          placeholder='发一条评论'
+          ref={inputRef}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        {/* 发布按钮 */}
+        <div className="reply-send">
+          <Button type='primary' className="send-text" onClick={handlePublish}>发布</Button>
         </div>
       </div>
       {/* 评论列表 */}

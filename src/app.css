@@ -6,6 +6,7 @@
 }
 .header {
   width: 60%;
+  display: flex;
 }
 .reply-list {
   width: 60%;
@@ -14,7 +15,6 @@
 }
 .reply-item {
   display: flex;
-  /* flex-direction: column; */
 }
 .avatar {
   width: 50px;
@@ -63,5 +63,11 @@
   margin: 0 10px;
 }
 .reply-wrap {
+  width: 60%;
   display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+.send-text {
+  margin: 0 10px;
 }
