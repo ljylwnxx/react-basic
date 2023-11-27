@@ -121,7 +121,7 @@ function JSXPractice() {
   //   _.orderBy(list, 'like', 'desc')
   // )
 
-  const [commentList, setCommentList] = useGetList()
+  const { commentList, setCommentList } = useGetList()
 
   const handleDel = (id) => {
     setCommentList(commentList.filter((item) => item.listId !== id))
