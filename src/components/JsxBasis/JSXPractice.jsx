@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Avatar, Button, Input } from 'antd'
 import '../../app.css'
-import avatar from '../../assets/banner.jpg'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { v4 as uuidV4 } from 'uuid'
@@ -24,89 +23,23 @@ const tabMenu = [
   },
 ]
 
-// const list = [
-//   {
-//     listId: 1, //随机id
-//     user: {
-//       uid: '110210',
-//       avatar: avatar,
-//       uname: 'Wnxx',
-//     },
-//     content: '感觉讲的很不错',
-//     time: dayjs(new Date('2022-01-11 09:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-//     like: 120,
-//     attitude: 0,
-//   },
-//   {
-//     listId: 2,
-//     user: {
-//       uid: '110211',
-//       avatar: avatar,
-//       uname: 'Pupu',
-//     },
-//     content: '有错别字',
-//     time: dayjs(new Date('2022-03-14 19:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-//     like: 20,
-//     attitude: 0,
-//   },
-//   {
-//     listId: 3,
-//     user: {
-//       uid: '110212',
-//       avatar: avatar,
-//       uname: 'Tom',
-//     },
-//     content: '这个原理好复杂',
-//     time: dayjs(new Date('2022-02-21 22:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-//     like: 96,
-//     attitude: 0,
-//   },
-//   {
-//     listId: 4,
-//     user: {
-//       uid: '110213',
-//       avatar: avatar,
-//       uname: 'John',
-//     },
-//     content: '讲解很细致，听的很明白',
-//     time: dayjs(new Date('2022-05-17 19:19:00')).format('YYYY-MM-DD HH:mm:ss'),
-//     like: 320,
-//     attitude: 1,
-//   },
-//   {
-//     listId: 5,
-//     user: {
-//       uid: '110214',
-//       avatar: avatar,
-//       uname: 'Lily',
-//     },
-//     content: '听完这个，感觉完全明白了',
-//     time: dayjs(new Date('2022-08-12 12:09:09')).format('YYYY-MM-DD HH:mm:ss'),
-//     like: 870,
-//     attitude: 1,
-//   },
-// ]
 const user = {
   uid: '110210',
-  avatar: avatar,
+  avatar:
+    'http://mms1.baidu.com/it/u=1752076575,487905276&fm=253&app=138&f=JPEG?w=500&h=500',
   uname: 'wnxx',
-}
-
-function formatTime(time) {
-  return `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
 }
 
 // 封装请求数据Hook
 function useGetList() {
   // 获取接口渲染数据
   const [commentList, setCommentList] = useState([])
-
   useEffect(() => {
     // 请求数据
     async function getList() {
       const res = await axios.get('http://localhost:3001/list')
-      console.log(res, 'res')
-      setCommentList(res.data)
+      const list = _.orderBy(res.data, 'like', 'desc')
+      setCommentList(list)
     }
     getList()
   }, [])
@@ -116,15 +49,47 @@ function useGetList() {
   }
 }
 
-function JSXPractice() {
-  // const [commentList, setCommentList] = useState(
-  //   _.orderBy(list, 'like', 'desc')
-  // )
+// 封装Item组件
+function Item({ item, onDel }) {
+  return (
+    <div className="reply-item">
+      {/* 头像 */}
+      <div className="avatar">
+        <Avatar size="large" src={item.user.avatar} />
+      </div>
+      <div className="content-wrap">
+        {/* 用户名 */}
+        <div className="user-info">
+          <div className="user-name">{item.user.uname}</div>
+        </div>
+        {/* 评论内容 */}
+        <div className="root-reply">
+          <span className="reply-content">{item.content}</span>
+          <div className="reply-info">
+            {/* 评论时间 */}
+            <span className="reply-time">{item.time}</span>
+            {/* 评论数量 */}
+            <span className="reply-count">点赞数：{item.like}</span>
+            {/* 删除按钮 */}
+            {user.uid === item.user.uid && (
+              <span className="delete-btn" onClick={() => onDel(item.listId)}>
+                删除
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
+function JSXPractice() {
   const { commentList, setCommentList } = useGetList()
 
+  // 删除功能
   const handleDel = (id) => {
     setCommentList(commentList.filter((item) => item.listId !== id))
+    setType(type)
   }
   // tab切换功能
   const [type, setType] = useState('hot')
@@ -147,7 +112,8 @@ function JSXPractice() {
         listId: 6,
         user: {
           uid: uuidV4(),
-          avatar: avatar,
+          avatar:
+            'http://mms1.baidu.com/it/u=1752076575,487905276&fm=253&app=138&f=JPEG?w=500&h=500',
           uname: 'Judy',
         },
         content: content,
@@ -157,6 +123,7 @@ function JSXPractice() {
         like: 370,
       },
     ])
+
     // 清空输入框内容
     setContent('')
     // 重新聚焦
@@ -202,36 +169,7 @@ function JSXPractice() {
       <div className="reply-list">
         {/* 评论项 */}
         {commentList.map((item) => (
-          <div key={item.listId} className="reply-item">
-            {/* 头像 */}
-            <div className="avatar">
-              <Avatar size="large" src={item.user.avatar} />
-            </div>
-            <div className="content-wrap">
-              {/* 用户名 */}
-              <div className="user-info">
-                <div className="user-name">{item.user.uname}</div>
-              </div>
-              {/* 评论内容 */}
-              <div className="root-reply">
-                <span className="reply-content">{item.content}</span>
-                <div className="reply-info">
-                  {/* 评论时间 */}
-                  <span className="reply-time">{item.time}</span>
-                  {/* 评论数量 */}
-                  <span className="reply-count">点赞数：{item.like}</span>
-                  {/* 删除按钮 */}
-                  {user.uid === item.user.uid && (
-                    <span
-                      className="delete-btn"
-                      onClick={() => handleDel(item.listId)}>
-                      删除
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Item key={item.listId} item={item} onDel={handleDel} />
         ))}
       </div>
     </div>
