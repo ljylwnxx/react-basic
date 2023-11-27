@@ -96,10 +96,8 @@ function formatTime(time) {
   return `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
 }
 
-function JSXPractice() {
-  // const [commentList, setCommentList] = useState(
-  //   _.orderBy(list, 'like', 'desc')
-  // )
+// 封装请求数据Hook
+function useGetList() {
   // 获取接口渲染数据
   const [commentList, setCommentList] = useState([])
 
@@ -112,6 +110,18 @@ function JSXPractice() {
     }
     getList()
   }, [])
+  return {
+    commentList,
+    setCommentList,
+  }
+}
+
+function JSXPractice() {
+  // const [commentList, setCommentList] = useState(
+  //   _.orderBy(list, 'like', 'desc')
+  // )
+
+  const [commentList, setCommentList] = useGetList()
 
   const handleDel = (id) => {
     setCommentList(commentList.filter((item) => item.listId !== id))
