@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Avatar, Button, Input } from 'antd'
 import '../../app.css'
 import avatar from '../../assets/banner.jpg'
@@ -6,6 +6,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import { v4 as uuidV4 } from 'uuid'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 const { TextArea } = Input
 const showText = true
@@ -23,68 +24,68 @@ const tabMenu = [
   },
 ]
 
-const list = [
-  {
-    listId: 1, //随机id
-    user: {
-      uid: '110210',
-      avatar: avatar,
-      uname: 'Wnxx',
-    },
-    content: '感觉讲的很不错',
-    time: dayjs(new Date('2022-01-11 09:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-    like: 120,
-    attitude: 0,
-  },
-  {
-    listId: 2,
-    user: {
-      uid: '110211',
-      avatar: avatar,
-      uname: 'Pupu',
-    },
-    content: '有错别字',
-    time: dayjs(new Date('2022-03-14 19:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-    like: 20,
-    attitude: 0,
-  },
-  {
-    listId: 3,
-    user: {
-      uid: '110212',
-      avatar: avatar,
-      uname: 'Tom',
-    },
-    content: '这个原理好复杂',
-    time: dayjs(new Date('2022-02-21 22:09:00')).format('YYYY-MM-DD HH:mm:ss'),
-    like: 96,
-    attitude: 0,
-  },
-  {
-    listId: 4,
-    user: {
-      uid: '110213',
-      avatar: avatar,
-      uname: 'John',
-    },
-    content: '讲解很细致，听的很明白',
-    time: dayjs(new Date('2022-05-17 19:19:00')).format('YYYY-MM-DD HH:mm:ss'),
-    like: 320,
-    attitude: 1,
-  },
-  {
-    listId: 5,
-    user: {
-      uid: '110214',
-      avatar: avatar,
-      uname: 'Lily',
-    },
-    content: '听完这个，感觉完全明白了',
-    time: dayjs(new Date('2022-08-12 12:09:09')).format('YYYY-MM-DD HH:mm:ss'),
-    like: 870,
-    attitude: 1,
-  },
-]
+// const list = [
+//   {
+//     listId: 1, //随机id
+//     user: {
+//       uid: '110210',
+//       avatar: avatar,
+//       uname: 'Wnxx',
+//     },
+//     content: '感觉讲的很不错',
+//     time: dayjs(new Date('2022-01-11 09:09:00')).format('YYYY-MM-DD HH:mm:ss'),
+//     like: 120,
+//     attitude: 0,
+//   },
+//   {
+//     listId: 2,
+//     user: {
+//       uid: '110211',
+//       avatar: avatar,
+//       uname: 'Pupu',
+//     },
+//     content: '有错别字',
+//     time: dayjs(new Date('2022-03-14 19:09:00')).format('YYYY-MM-DD HH:mm:ss'),
+//     like: 20,
+//     attitude: 0,
+//   },
+//   {
+//     listId: 3,
+//     user: {
+//       uid: '110212',
+//       avatar: avatar,
+//       uname: 'Tom',
+//     },
+//     content: '这个原理好复杂',
+//     time: dayjs(new Date('2022-02-21 22:09:00')).format('YYYY-MM-DD HH:mm:ss'),
+//     like: 96,
+//     attitude: 0,
+//   },
+//   {
+//     listId: 4,
+//     user: {
+//       uid: '110213',
+//       avatar: avatar,
+//       uname: 'John',
+//     },
+//     content: '讲解很细致，听的很明白',
+//     time: dayjs(new Date('2022-05-17 19:19:00')).format('YYYY-MM-DD HH:mm:ss'),
+//     like: 320,
+//     attitude: 1,
+//   },
+//   {
+//     listId: 5,
+//     user: {
+//       uid: '110214',
+//       avatar: avatar,
+//       uname: 'Lily',
+//     },
+//     content: '听完这个，感觉完全明白了',
+//     time: dayjs(new Date('2022-08-12 12:09:09')).format('YYYY-MM-DD HH:mm:ss'),
+//     like: 870,
+//     attitude: 1,
+//   },
+// ]
 const user = {
   uid: '110210',
   avatar: avatar,
@@ -96,9 +97,22 @@ function formatTime(time) {
 }
 
 function JSXPractice() {
-  const [commentList, setCommentList] = useState(
-    _.orderBy(list, 'like', 'desc')
-  )
+  // const [commentList, setCommentList] = useState(
+  //   _.orderBy(list, 'like', 'desc')
+  // )
+  // 获取接口渲染数据
+  const [commentList, setCommentList] = useState([])
+
+  useEffect(() => {
+    // 请求数据
+    async function getList() {
+      const res = await axios.get('http://localhost:3001/list')
+      console.log(res, 'res')
+      setCommentList(res.data)
+    }
+    getList()
+  }, [])
+
   const handleDel = (id) => {
     setCommentList(commentList.filter((item) => item.listId !== id))
   }
