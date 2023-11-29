@@ -1,9 +1,18 @@
+import NavBar from './components/NavBar'
 
-
-function App () {
+const App = () => {
   return (
     <div className="App">
-      wyrifj
+      {/* 导航 */}
+      <NavBar />
+      {/* 内容 */}
+      <div className="content-wrap">
+        <div className="goods-list">
+          {/* 外卖商品列表 */}
+        </div>
+      </div>
+      {/* 购物车 */}
+
     </div>
   )
 }
