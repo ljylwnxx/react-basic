@@ -15,7 +15,7 @@ const App = () => {
   }, [dispatch])
 
   //  获取foodsList渲染列表 
-  const { foodsList } = useSelector(state => state.foods)
+  const { foodsList, activeIndex } = useSelector(state => state.foods)
   return (
     <div className="app">
       {/* 导航 */}
@@ -27,9 +27,9 @@ const App = () => {
           <div className="list-content">
             <div className="goods-list">
               {/* 外卖商品列表 */}
-              {foodsList.map(item => {
+              {foodsList.map((item, index) => {
                 return (
-                  <FoodsCategory
+                  activeIndex === index && <FoodsCategory
                     key={item.tag}
                     // 列表标题
                     name={item.name}
