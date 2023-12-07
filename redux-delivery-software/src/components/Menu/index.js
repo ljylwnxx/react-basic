@@ -1,13 +1,14 @@
-import foodList from '../../mock/foodsList.json'
 import classNames from 'classnames'
 import './index.scss'
+import { useSelector } from 'react-redux'
 
 // const menus = foodList.map(item => ({ tag: item.tag, name: item.name }))
 
 const Menu = () => {
+  const { foodsList } = useSelector(state => state.foods)
   return (
     <div className="list-menu">
-      {foodList.foodsList.map(item => {
+      {foodsList.map(item => {
         console.log(item, 'item')
         return (
           <div
