@@ -14,17 +14,17 @@ const tabs = [
   {
     key: "/month",
     title: "月度账单",
-    icon: <BillOutline />,
+    icon: <BillOutline />
   },
   {
     key: "/new",
     title: "记账",
-    icon: <AddCircleOutline />,
+    icon: <AddCircleOutline />
   },
   {
     key: "/year",
     title: "年度账单",
-    icon: <CalculatorOutline />,
+    icon: <CalculatorOutline />
   }
 ]
 
