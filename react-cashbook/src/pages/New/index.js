@@ -22,13 +22,15 @@ const New = () => {
 
   // 控制收入支出的状态
   const [cashType, setcashType] = useState("pay")
-  // 保存账单
+  // 收集金额
   const [money, setMoney] = useState(0)
   const moneyChange = (value) => {
     setMoney(value)
   }
   const [useFor, setUseFor] = useState("")
+  // 保存账单
   const saveCash = () => {
+    // 收集表单数据
     const data = {
       type: cashType,
       money: cashType === "pay" ? -money : money,
@@ -92,6 +94,7 @@ const New = () => {
       </div>
 
       <div className="kaTypeList">
+        {/* 数据区域 */}
         {cashListData[cashType].map((item) => {
           return (
             <div className="kaType" key={item.type}>
