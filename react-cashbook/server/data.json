@@ -1,5 +1,5 @@
 {
-  "ka": [
+  "data": [
     {
       "type": "pay",
       "money": -99,
@@ -104,6 +104,41 @@
       "date": "2023-11-10T16:00:00.000Z",
       "useFor": "book",
       "id": 22
+    },
+    {
+      "type": "pay",
+      "money": -100,
+      "date": "2022-12-14T16:00:00.000Z",
+      "useFor": "taxi",
+      "id": 23
+    },
+    {
+      "type": "pay",
+      "money": -80,
+      "date": "2021-12-14T16:00:00.000Z",
+      "useFor": "drinks",
+      "id": 24
+    },
+    {
+      "type": "income",
+      "money": 200,
+      "date": "2022-12-14T16:00:00.000Z",
+      "useFor": "overtimepay",
+      "id": 25
+    },
+    {
+      "type": "pay",
+      "money": -10,
+      "date": "2021-12-14T16:00:00.000Z",
+      "useFor": "drinks",
+      "id": 26
+    },
+    {
+      "type": "pay",
+      "money": -70,
+      "date": "2021-10-14T16:00:00.000Z",
+      "useFor": "taxi",
+      "id": 27
     }
   ]
 }
